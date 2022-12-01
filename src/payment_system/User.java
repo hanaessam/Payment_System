@@ -1,5 +1,6 @@
 package payment_system;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 import payment.Wallet;
@@ -8,39 +9,35 @@ import refunds.Refund;
 
 public class User implements Observer {
 	Scanner myObj = new Scanner(System.in); 
-	private String username;
-	private String password;
+	private final String username;
+	private final String email;
+	private final String password;
+	private static final HashMap<String, String> loginUser = new HashMap<>();
 	Wallet wallet;
 	Refund refund;
-	public void setUsername(String username) {
+	public User() {
+		this.username = "";
+		this.email = "";
+		this.password = "";
+	}
+	public User(String username, String email, String password) {
 		this.username = username;
+	    this.password = password;
+	    this.email = email;
 	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+
 	public String getUsername() {
-		return username;
+		 return this.username + "";
 	}
 	public String getPassword() {
-		return password;
+		return this.password + "";
 	}
-//	public boolean logIn() {
-//		System.out.println("Enter your username: ");
-//		String newUsername = myObj.nextLine();
-//		System.out.println("Enter your password: ");
-//		String newPassword = myObj.nextLine();
-//		if(getUsername() == newUsername && getPassword() == newPassword){
-//			return true;
-//			}else {
-//			return false;	
-//		}
-//	}
-//	public void signUp() {
-//		System.out.println("Enter your username: ");
-//		String newUsername = myObj.nextLine();
-//		setUsername(newUsername);
-//		System.out.println("Enter your password: ");
-//		String newPassword = myObj.nextLine();
-//		setPassword(newPassword);
-//	}
+	public String getEmail() {
+		return this.email + "";
+	}
+	public HashMap<String, String> getUserMap() {
+	     return loginUser;
+	}
+
+
 }

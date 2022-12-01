@@ -76,12 +76,13 @@ public class Main {
 				newPassword = myObj.nextLine();
 				newUser.setPassword(newPassword);
 				newUsers.add(newUser);
+				System.out.println(newUsers.isEmpty());
 				prompt();
-				
 				
 			} else if(choice == 2){ 
 	
 				for (int i = 0; i < newUsers.size(); i++) {
+					System.out.println("list: ");
 					System.out.println(newUsers.get(i).getUsername());
 				}
 				System.out.println("Enter your username(login): ");
@@ -95,7 +96,7 @@ public class Main {
 					}else {
 						System.out.println("Enter your username: ");
 						newUsername = myObj.nextLine();
-						myObj.nextLine();
+				
 						newUser.setUsername(newUsername);
 						System.out.println("Enter your password: ");
 						newPassword = myObj.nextLine();
