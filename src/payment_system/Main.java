@@ -1,6 +1,7 @@
 package payment_system;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +14,8 @@ import services.ServiceFactory;
 
 public class Main {
 	static Scanner myObj = new Scanner(System.in);  
-	
+	  private static final Scanner sc = new Scanner(System.in);
+	  private static  User user1 = new User("", "", "");
 	public static void prompt() {
 		
 		System.out.println("Our Services: ");
@@ -46,76 +48,113 @@ public class Main {
 		    break;
 		}
 	}
+
 	
+    //This is just for testing purposes.
 	
+	 
+	 
 	public static void main(String[] args) {
-		List<User> newUsers = new ArrayList<>();
-		String newUsername ;
-		String newPassword ;
-		User newUser = new User();
+		//List<User> newUsers = new ArrayList<>();
+//		String newUsername ;
+//		String newPassword ;
+//		String newUserEmail ;
+	//	User newUser = new User();
 	
-		int choice;
+		int choice=1;
 		
 		do{
-			System.out.println("------Welcome to fawry system------");
-			System.out.println("1- Sign up");
-			System.out.println("2- Log in");
-			System.out.println("3- Exit");
-			System.out.println("Enter 1, to sign up or 2 to log in, 3 for exit");
+//			System.out.println("------Welcome to fawry system------");
+//			System.out.println("1- Sign up");
+//			System.out.println("2- Log in");
+//			System.out.println("3- Exit");
+//			System.out.println("Enter 1, to sign up or 2 to log in, 3 for exit");
 			
-			choice = myObj.nextInt(); 
-			
-			
-			if(choice == 1) {	
-				
-				System.out.println("Enter your username: ");
-				newUsername = myObj.nextLine();
-				myObj.nextLine();
-				newUser.setUsername(newUsername);
-				System.out.println("Enter your password: ");
-				newPassword = myObj.nextLine();
-				newUser.setPassword(newPassword);
-				newUsers.add(newUser);
-				System.out.println(newUsers.isEmpty());
-				prompt();
-				
-			} else if(choice == 2){ 
-	
-				for (int i = 0; i < newUsers.size(); i++) {
-					System.out.println("list: ");
-					System.out.println(newUsers.get(i).getUsername());
-				}
-				System.out.println("Enter your username(login): ");
-				newUsername = myObj.nextLine();
-				myObj.nextLine();
-				System.out.println("Enter your password (login): ");
-				newPassword = myObj.nextLine();
-				for (int i = 0; i < newUsers.size(); i++) {
-					if(newUsers.get(i).getUsername() == newUsername && newUsers.get(i).getPassword() == newPassword) {
-						prompt();
-					}else {
-						System.out.println("Enter your username: ");
-						newUsername = myObj.nextLine();
-				
-						newUser.setUsername(newUsername);
-						System.out.println("Enter your password: ");
-						newPassword = myObj.nextLine();
-						newUser.setPassword(newPassword);
-						newUsers.add(newUser);
-						prompt();
-						for (int i1 = 0; i1 < newUsers.size(); i1++) {
-							System.out.println(newUsers.get(i1).getUsername());
-						}
-					}
-				}
-				
-			}
+
+			        boolean exitRequested = false;
+			        while (!exitRequested) {
+			            System.out.println(
+			                     "1.Register" + "\n" + "\r" + "2.Log in" + "\n" + "\r" + "3.Exit.");
+			             choice = sc.nextInt();
+			            switch (choice) {
+			                case 1:
+			                    register();
+			                    prompt();
+			                    break;
+
+			                case 2:
+			                    login();
+			                    prompt();
+			                    break;
+
+			                case 3:
+			                    exitRequested = true;
+			                    break;
+
+			                default:
+			                    System.out.println("?");
+			                    break;
+			            }
+			        }
+
+		
+
+			    
 			   
 		}while(choice != 3);
 		
-		//ssss
+	
 		
 
 	}
+	 public static void register() {
+	        System.out.println("Please enter Email");
+	        String email = sc.next();
+	        System.out.println("Please enter username");
+	        String username = sc.next();
+	        System.out.println("Please enter password");
+	        String password = sc.next();
+	        User newMember = new User(username, password, email);
+	        user1.register(newMember);
+	        login(); //call login after registering
+	    }
+
+	 public static void login() {
+	        System.out.println("Username:");
+	        String username = sc.next();
+	        System.out.println("Password:");
+	        String password = sc.next();
+
+	        User x = new User();
+	        HashMap<String, String> loginUser = x.getUserMap();
+	        //access the hashmap
+	        System.out.println("hash : "+loginUser);  //
+
+	        find(loginUser, username, password);
+	    }
+	 
+	 public static void find(HashMap<String, String> loginUser, String username, String password) {
+	        boolean f= false;
+	        for (String i : loginUser.keySet()) {
+	            if (i.equals(username) && loginUser.get(i).equals(password)) {
+	                System.out.println("User is Found!");
+	                f=true;
+	              //  System.out.println("Program will now terminate");
+	                //System.exit(0);
+	                break;
+	            }
+	        }
+	        if(!f){
+	            System.out.println("User Not Found. please \t 1-Login Again -  2-sign up");
+	            int c  = sc.nextInt();
+	            if(c==1)
+	                login();
+	            else if(c==2)
+	                register();
+	        }
+
+	    }
+	 
+
 
 }

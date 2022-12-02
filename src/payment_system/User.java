@@ -20,7 +20,7 @@ public class User implements Observer {
 		this.email = "";
 		this.password = "";
 	}
-	public User(String username, String email, String password) {
+	public User(String username, String password, String email) {
 		this.username = username;
 	    this.password = password;
 	    this.email = email;
@@ -38,6 +38,26 @@ public class User implements Observer {
 	public HashMap<String, String> getUserMap() {
 	     return loginUser;
 	}
+	 public boolean isUserExist(User user){
+	        if(loginUser.containsKey(user.getUsername()) && loginUser.containsValue(user.getPassword())){
+	            return true;
+	        } else {
+	            System.out.println("No member in the list!");
+	        }
+	        return false;
+	    }
+
+	    //something also wrong here
+	    public void register(User user) {
+	        loginUser.put(user.getUsername(),user.getPassword());
+	    }
+	    public void login(User member){
+	        if(isUserExist(member)) {
+	            System.out.println("Hello " + member.getEmail());
+	        } else {
+	            System.out.println("No member with username " +member.getUsername());
+	        }
+	    }
 
 
 }
