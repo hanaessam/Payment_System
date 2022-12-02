@@ -3,7 +3,7 @@ package services;
 import forms.Form;
 import forms.InternetPaymentForm;
 
-public class InternetPayment implements ServiceFactory, ServiceBehavior {
+public class InternetPayment implements ServiceFactory, ServiceProvider {
 //	Form internetpayform = new InternetPaymentForm();
 
 	public Form createForm() {

@@ -40,6 +40,8 @@ public class Main {
 			System.out.println("---Landline Service---");
 			ServiceFactory landlineServiceFactory = new Landline();
 			landlineServiceFactory.createForm();
+			((Landline)landlineServiceFactory).setPaymentChoice();
+			((Landline)landlineServiceFactory).setReceiptChoice();
 			break;
 		case 4:
 			System.out.println("---Donation Services---");
@@ -58,7 +60,8 @@ public class Main {
 				System.out.println("1- Sign up");
 				System.out.println("2- Log in");
 				System.out.println("3- Exit");
-				System.out.println("Enter 1, to sign up or 2 to log in, 3 for exit");				choice = sc.nextInt();
+				System.out.println("Enter 1, to sign up or 2 to log in, 3 for exit");				
+				choice = sc.nextInt();
 				switch (choice) {
 				case 1:
 					register();

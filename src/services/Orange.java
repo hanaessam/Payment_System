@@ -1,5 +1,5 @@
 package services;
 
-public class Orange implements ServiceProvider {
+public class Orange implements ServiceBehavior {
 
 }

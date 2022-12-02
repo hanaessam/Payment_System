@@ -1,6 +1,6 @@
 package services;
 
-public class We implements ServiceProvider {
+public class We implements ServiceBehavior {
 	
 
 }

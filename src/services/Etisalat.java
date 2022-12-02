@@ -1,5 +1,5 @@
 package services;
 
-public class Etisalat implements ServiceProvider {
+public class Etisalat implements ServiceBehavior {
 
 }

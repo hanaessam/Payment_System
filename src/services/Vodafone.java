@@ -1,5 +1,5 @@
 package services;
 
-public class Vodafone implements ServiceProvider {
+public class Vodafone implements ServiceBehavior {
 
 }

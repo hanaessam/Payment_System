@@ -3,10 +3,10 @@ package forms;
 import java.util.Scanner;
 
 public class LandlineForm implements Form {
-	public String homeNumber;
-	public int amount;
-	public int recieptChoice;
-	public int paymentChoice;
+	public static String homeNumber;
+	public static int amount;
+	public static int recieptChoice;
+	public static int paymentChoice;
 	
 	private static Scanner myObj = new Scanner(System.in);
 	
@@ -25,4 +25,9 @@ public class LandlineForm implements Form {
 		System.out.println("1- Credit card" + "\n" + "2- Cash" + "\n" + "3- Wallet" + "\n" );
 		paymentChoice = myObj.nextInt();
 	}
+	public int getAmount() {
+		return amount;
+	}
+
+
 }
