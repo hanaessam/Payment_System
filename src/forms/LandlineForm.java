@@ -25,9 +25,5 @@ public class LandlineForm implements Form {
 		System.out.println("1- Credit card" + "\n" + "2- Cash" + "\n" + "3- Wallet" + "\n" );
 		paymentChoice = myObj.nextInt();
 	}
-	public int getAmount() {
-		return amount;
-	}
-
-
+	
 }

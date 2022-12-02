@@ -20,19 +20,5 @@ public class InternetPaymentForm implements Form {
 		System.out.println("1- Credit card" + "\n" + "2- Cash" + "\n" + "3- Wallet" + "\n" );
 		paymentChoice = myObj.nextInt();
 	}
-	@Override
-	public int getAmount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int getPaymentChoice() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int getReceiptChoice() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import forms.Form;
 import forms.LandlineForm;
+import payment.Wallet;
 import services.Donations;
 import services.InternetPayment;
 import services.Landline;
@@ -23,6 +24,7 @@ public class Main {
 		System.out.println("2- Internet Payment Services");
 		System.out.println("3- Landline Services ");
 		System.out.println("4- Donation Services ");
+		System.out.println("5- Add funds to wallet ");
 		System.out.println("Enter your service: ");
 		int switchNum = myObj.nextInt();
 		switch (switchNum) {
@@ -40,49 +42,56 @@ public class Main {
 			System.out.println("---Landline Service---");
 			ServiceFactory landlineServiceFactory = new Landline();
 			landlineServiceFactory.createForm();
-			((Landline)landlineServiceFactory).setPaymentChoice();
 			((Landline)landlineServiceFactory).setReceiptChoice();
+			((Landline)landlineServiceFactory).setPaymentChoice();
+			
 			break;
 		case 4:
 			System.out.println("---Donation Services---");
 			ServiceFactory donationServiceFactory = new Donations();
 			donationServiceFactory.createForm();
 			break;
+		case 5:
+			System.out.println("---Add funds to wallet---");
+			int funds = myObj.nextInt();
+			((Wallet)user1.getWallet()).addFunds(funds);
 		}
+		
 	}
 
 	public static void main(String[] args) {
-		int choice = 1;
-		do {
-			boolean exitRequested = false;
-			while (!exitRequested) {
-				System.out.println("------Welcome to fawry system------");
-				System.out.println("1- Sign up");
-				System.out.println("2- Log in");
-				System.out.println("3- Exit");
-				System.out.println("Enter 1, to sign up or 2 to log in, 3 for exit");				
-				choice = sc.nextInt();
-				switch (choice) {
-				case 1:
-					register();
-					prompt();
-					break;
-
-				case 2:
-					login();
-					prompt();
-					break;
-
-				case 3:
-					exitRequested = true;
-					break;
-
-				default:
-					System.out.println("?");
-					break;
-				}
-			}
-		} while (choice != 3);
+//		int choice = 1;
+//		do {
+//			boolean exitRequested = false;
+//			while (!exitRequested) {
+//				System.out.println("------Welcome to fawry system------");
+//				System.out.println("1- Sign up");
+//				System.out.println("2- Log in");
+//				System.out.println("3- Exit");
+//				System.out.println("Enter 1, to sign up or 2 to log in, 3 for exit");				
+//				choice = sc.nextInt();
+//				switch (choice) {
+//				case 1:
+//					register();
+//					prompt();
+//					break;
+//
+//				case 2:
+//					login();
+//					prompt();
+//					break;
+//
+//				case 3:
+//					exitRequested = true;
+//					break;
+//
+//				default:
+//					System.out.println("?");
+//					break;
+//				}
+//			}
+//		} while (choice != 3);
+		prompt();
 	}
 
 	public static void register() {
