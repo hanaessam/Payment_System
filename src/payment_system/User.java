@@ -2,7 +2,6 @@ package payment_system;
 
 import java.util.HashMap;
 import java.util.Scanner;
-
 import payment.Wallet;
 import refunds.Observer;
 import refunds.Refund;
@@ -12,9 +11,10 @@ public class User implements Observer {
 	private final String username;
 	private final String email;
 	private final String password;
-	private static final HashMap<String, String> loginUser = new HashMap<>();
 	Wallet wallet;
 	Refund refund;
+	private static final HashMap<String, String> loginUser = new HashMap<>();
+	
 	public User() {
 		this.username = "";
 		this.email = "";
@@ -25,7 +25,6 @@ public class User implements Observer {
 	    this.password = password;
 	    this.email = email;
 	}
-
 	public String getUsername() {
 		 return this.username + "";
 	}
