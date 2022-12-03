@@ -9,9 +9,8 @@ import payment.CreditCard;
 import payment.Payment;
 import payment.Wallet;
 
-public class InternetPayment implements ServiceFactory, ServiceProvider {
-	public static Form form ;
-	public static Payment payment ;
+public class InternetPayment extends ServiceFactory implements ServiceProvider {
+
 	public static Discount discount;
 	public static ServiceBehavior serviceBehavior;
 
@@ -40,25 +39,5 @@ public class InternetPayment implements ServiceFactory, ServiceProvider {
 		}
 	}
 	
-	public void setPaymentChoice() {
-		int choice = ((InternetPaymentForm)form).paymentChoice;
-		if(choice == 1) {
-			payment = new CreditCard();
-			boolean state=payment.calculatePayment(((InternetPaymentForm)form).amount);
-			if(!state) {
-				((InternetPaymentForm)form).choosePayment();
-				setPaymentChoice();
-			}
-		}else if(choice == 2) {
-			payment = new Cash();
-			payment.calculatePayment(((InternetPaymentForm)form).amount);
-		}else {
-			payment = new Wallet();
-			boolean state=payment.calculatePayment(((InternetPaymentForm)form).amount);
-			if(!state) {
-				((InternetPaymentForm)form).choosePayment();
-				setPaymentChoice();
-			}
-		}
-	}
+
 }

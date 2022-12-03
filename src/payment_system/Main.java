@@ -1,9 +1,8 @@
 package payment_system;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
+
 import forms.Form;
 import forms.LandlineForm;
 import payment.Wallet;
@@ -31,40 +30,45 @@ public class Main {
 		case 1:
 			System.out.println("---Mobile Recharge Services---");
 			ServiceFactory mobileRechaServiceFactory = new MobileRecharge();
-			mobileRechaServiceFactory.createForm();
-			((MobileRecharge)mobileRechaServiceFactory).setCompanyChoice();
-			((MobileRecharge)mobileRechaServiceFactory).setPaymentChoice();
+			Form mobileForm=mobileRechaServiceFactory.createForm();
+			((MobileRecharge) mobileRechaServiceFactory).setCompanyChoice();
+			((MobileRecharge) mobileRechaServiceFactory).setPaymentChoice();
+			mobileForm.refund();
+
 			break;
 		case 2:
 			System.out.println("---Internet Payment Services---");
 			ServiceFactory internetPaymentFactory = new InternetPayment();
-			internetPaymentFactory.createForm();
-			((InternetPayment)internetPaymentFactory).setCompanyChoice();
-			((InternetPayment)internetPaymentFactory).setPaymentChoice();
+			Form internetForm= internetPaymentFactory.createForm();
+			((InternetPayment) internetPaymentFactory).setCompanyChoice();
+			((InternetPayment) internetPaymentFactory).setPaymentChoice();
+			internetForm.refund();
 			break;
 		case 3:
 			System.out.println("---Landline Service---");
 			ServiceFactory landlineServiceFactory = new Landline();
-			landlineServiceFactory.createForm();
-			((Landline)landlineServiceFactory).setReceiptChoice();
-			((Landline)landlineServiceFactory).setPaymentChoice();
+			Form landlineForm= landlineServiceFactory.createForm();
+			((Landline) landlineServiceFactory).setReceiptChoice();
+			((Landline) landlineServiceFactory).setPaymentChoice();
+			landlineForm.refund();
 			break;
 		case 4:
 			System.out.println("---Donation Services---");
 			ServiceFactory donationServiceFactory = new Donations();
-			donationServiceFactory.createForm();
-			((Donations)donationServiceFactory).setDonationChoice();
-			((Donations)donationServiceFactory).setPaymentChoice();
+			Form donationForm = donationServiceFactory.createForm();
+			((Donations) donationServiceFactory).setDonationChoice();
+			((Donations) donationServiceFactory).setPaymentChoice();
+			donationForm.refund();
 			break;
 		case 5:
 			System.out.println("---Add funds to wallet---");
-			((Wallet)user1.wallet).addFunds();
+			((Wallet) user1.wallet).addFunds();
 		}
 	}
 
 	public static void main(String[] args) {
 		int choice = 1;
-		while (choice != 3){
+		while (choice != 3) {
 			System.out.println("\n------Welcome to fawry system------");
 			System.out.println("Choose from the following\n1- Admin\n2- User\n3- Exit");
 			choice = sc.nextInt();
@@ -78,13 +82,13 @@ public class Main {
 				int temp = sc.nextInt();
 				switch (temp) {
 				case 1:
-					
+
 					break;
 				case 2:
-					
+
 					break;
 				case 3:
-					
+
 					break;
 				case 4:
 					return;
@@ -94,11 +98,11 @@ public class Main {
 				}
 				break;
 			}
-			case 2:{
+			case 2: {
 				System.out.println("\n1- Sign up");
 				System.out.println("2- Log in");
 				System.out.println("3- Exit");
-				System.out.println("Enter 1, to sign up or 2 to log in, 3 for exit");				
+				System.out.println("Enter 1, to sign up or 2 to log in, 3 for exit");
 				int temp = sc.nextInt();
 				switch (temp) {
 				case 1:

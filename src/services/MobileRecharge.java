@@ -9,9 +9,7 @@ import payment.CreditCard;
 import payment.Payment;
 import payment.Wallet;
 
-public class MobileRecharge implements ServiceFactory, ServiceProvider{
-	public static Form form ;
-	public static Payment payment ;
+public class MobileRecharge extends ServiceFactory implements ServiceProvider{
 	public static Discount discount;
 	public static ServiceBehavior serviceBehavior;
 	
@@ -35,28 +33,6 @@ public class MobileRecharge implements ServiceFactory, ServiceProvider{
 			serviceBehavior = new We();
 		} else if (choice == 4) {
 			serviceBehavior = new Orange();
-		}
-	}
-	
-	public void setPaymentChoice() {
-		int choice = ((MobileRechargeForm)form).paymentChoice;
-		if(choice == 1) {
-			payment = new CreditCard();
-			boolean state=payment.calculatePayment(((MobileRechargeForm)form).amount);
-			if(!state) {
-				((MobileRechargeForm)form).choosePayment();
-				setPaymentChoice();
-			}
-		}else if(choice == 2) {
-			payment = new Cash();
-			payment.calculatePayment(((MobileRechargeForm)form).amount);
-		}else {
-			payment = new Wallet();
-			boolean state=payment.calculatePayment(((MobileRechargeForm)form).amount);
-			if(!state) {
-				((MobileRechargeForm)form).choosePayment();
-				setPaymentChoice();
-			}
 		}
 	}
 }

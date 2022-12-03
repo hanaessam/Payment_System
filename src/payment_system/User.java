@@ -9,7 +9,8 @@ import refunds.Observer;
 import refunds.Refund;
 
 public class User implements Observer {
-	Scanner myObj = new Scanner(System.in); 
+	Scanner myObj = new Scanner(System.in);
+	public static int request;
 	private final String username;
 	private final String email;
 	private final String password;
@@ -59,5 +60,8 @@ public class User implements Observer {
 	        } else {
 	            System.out.println("No member with username " +member.getUsername());
 	        }
+	    }
+	    public void requestRefund() {
+	    	
 	    }
 }

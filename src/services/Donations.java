@@ -9,9 +9,8 @@ import payment.CreditCard;
 import payment.Payment;
 import payment.Wallet;
 
-public class Donations implements ServiceFactory {
-	public static Form form ;
-	public static Payment payment ;
+public class Donations extends ServiceFactory {
+
 	public static Discount discount;
 
 	@Override
@@ -31,26 +30,5 @@ public class Donations implements ServiceFactory {
 		}
 	}
 
-	@Override
-	public void setPaymentChoice() {
-		int choice = ((DonationsForm)form).paymentChoice;
-		if(choice == 1) {
-			payment = new CreditCard();
-			boolean state=payment.calculatePayment(((DonationsForm)form).amount);
-			if(!state) {
-				((DonationsForm)form).choosePayment();
-				setPaymentChoice();
-			}
-		}else if(choice == 2) {
-			payment = new Cash();
-			payment.calculatePayment(((DonationsForm)form).amount);
-		}else {
-			payment = new Wallet();
-			boolean state=payment.calculatePayment(((DonationsForm)form).amount);
-			if(!state) {
-				((DonationsForm)form).choosePayment();
-				setPaymentChoice();
-			}
-		}
-	}
+
 }

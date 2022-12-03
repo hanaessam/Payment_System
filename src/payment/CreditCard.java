@@ -2,9 +2,6 @@ package payment;
 
 import java.util.Scanner;
 
-import forms.Form;
-import forms.LandlineForm;
-
 public class CreditCard implements Payment {
 	public static int balance=0;	
 	private static Scanner myObj = new Scanner(System.in);
