@@ -27,4 +27,8 @@ public class Wallet implements Payment {
 			System.out.println("Wallet balance is now : " + walletBalance);
 		}
 	}
+	public void setWalletBalance(Integer i) {
+		walletBalance+=i;
+		System.out.println(walletBalance);
+	}
 }

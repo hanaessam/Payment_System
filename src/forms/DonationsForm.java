@@ -11,11 +11,11 @@ public class DonationsForm extends Form {
 	}
 	
 	public void formHandler() {
-		System.out.println("Enter the Amount you want to donate : ");
-		amount = myObj.nextInt();
 		System.out.println("----Choose----");
 		System.out.println("1- Cancer Hospitals" + "\n" + "2- Schools" + "\n" + "3- NGOs");
 		donationChoice = myObj.nextInt();
+		System.out.println("Enter the Amount you want to donate : ");
+		amount = myObj.nextInt();
 		choosePayment();
 		refund();
 	}

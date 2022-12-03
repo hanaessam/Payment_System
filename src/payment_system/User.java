@@ -17,41 +17,48 @@ public class User implements Observer {
 	public static String username;
 	private final String email;
 	private final String password;
-	Form form ;
-	Payment wallet= new Wallet();
+	Form form;
+	Payment wallet = new Wallet();
 	private static final HashMap<String, String> loginUser = new HashMap<>();
-	public  List<String> userRequestList;
+	public List<String> userRequestList;
 	public static int refundedAmount;
 	public static String accepted;
-	
+
 	public User() {
 		User.username = "";
 		this.email = "";
 		this.password = "";
-		userRequestList  = new ArrayList<>();
+		userRequestList = new ArrayList<>();
 	}
+
 	public User(String username, String password, String email) {
 		User.username = username;
-	    this.password = password;
-	    this.email = email;
+		this.password = password;
+		this.email = email;
 	}
-	public List< String> getUserListRequest(){
+
+	public List<String> getUserListRequest() {
 		return userRequestList;
 	}
+
 	public void setAccepted(String accepted) {
-		 this.accepted =accepted;
+		this.accepted = accepted;
 	}
+
 	public String getUsername() {
-		 return User.username + "";
+		return User.username + "";
 	}
+
 	public String getPassword() {
 		return this.password + "";
 	}
+
 	public String getEmail() {
 		return this.email + "";
 	}
+
 	public HashMap<String, String> getUserMap() {
-	     return loginUser;
+		return loginUser;
 	}
 //	 public boolean isUserExist(User user){
 //	        if(loginUser.containsKey(user.getUsername()) && loginUser.containsValue(user.getPassword())){
@@ -62,12 +69,13 @@ public class User implements Observer {
 //	        return false;
 //	    }
 
-	    //something also wrong here
-	    public void register(User user) {
-	        loginUser.put(user.getUsername(),user.getPassword());
-	        System.out.println("here: "+user.getUsername());
-	        System.out.println("here: "+user.getPassword());
-	    }
+	// something also wrong here
+	public void register(User user) {
+		loginUser.put(user.getUsername(), user.getPassword());
+		System.out.println("here: " + user.getUsername());
+		System.out.println("here: " + user.getPassword());
+	}
+
 //	    public void login(User member){
 //	        if(isUserExist(member)) {
 //	            System.out.println("Hello " + member.getEmail());
@@ -75,19 +83,20 @@ public class User implements Observer {
 //	            System.out.println("No member with username " +member.getUsername());
 //	        }
 //	    }
-	    public void requestRefund() {
-	    	
-	    	int choice = Form.refund();
-	    	if(choice==1) {
-	    	System.out.println("Enter amount to be refunded: ");
+	public void requestRefund() {
+
+		int choice = Form.refund();
+		if (choice == 1) {
+			System.out.println("Enter amount to be refunded: ");
 			refundedAmount = myObj.nextInt();
-			System.out.print( "user name  "+User.username);
-			//username = loginUser.get(username);
+			System.out.print("user name  " + User.username);
+			// username = loginUser.get(username);
 			userRequestList.add(username);
-			//accepted = "";
-		//	userRequestList.add(accepted);
+			// accepted = "";
+			// userRequestList.add(accepted);
 			userRequestList = getUserListRequest();
 			System.out.print(userRequestList);
-	    }
-	    }
+		}
+	}
+
 }

@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import javax.security.auth.Subject;
 
+
 import forms.Form;
 import forms.LandlineForm;
 import payment.Wallet;
@@ -23,27 +24,30 @@ public class Main {
 	private static final Scanner sc = new Scanner(System.in);
 	private static User user1 = new User();
 	public static Refund refundSubject = new Refund();
-	
-	public static void adminResponse() {
-		
+	public static List<User> users=new ArrayList<>();
+
+	public static HashMap<List<String>, Integer> adminResponse() {
+
 		for (List<String> i : refundSubject.requests.keySet()) {
-			 System.out.println("loop");
-		//	if (i.equals(user1.userRequestList) && refundSubject.requests.get(i).equals(user1.refundedAmount)) {
-				
-				System.out.println("1-press a for Accepted \n2-press r for  Rejecterd");
-				String accepted =sc.next();
-				user1.accepted= accepted;
-				user1.userRequestList.add(accepted);
-				System.out.println(refundSubject.requests);
-			
-			
-//				break;
-//			}
+			System.out.println("loop");
+			System.out.println(i);
+			System.out.println("1-press a for Accepted \n2-press r for  Rejecterd");
+			String accepted = sc.next();
+			if (!i.contains("a") && !i.contains("r")) {
+				i.add(accepted);
+			}
+			System.out.println(refundSubject.requests);
+			for(int j=0;j<users.size();j++) {
+				if(users.get(j).username == i.get(0)) {
+				    System.out.println(refundSubject.requests.get(i));
+					((Wallet)users.get(j).wallet).setWalletBalance(refundSubject.requests.get(i));
+					break;
+				}
+			}
 		}
-		
+		return (HashMap<List<String>, Integer>) refundSubject.requests;
+
 	}
-	
-	
 
 	public static void prompt() {
 		System.out.println("Our Services: ");
@@ -58,19 +62,17 @@ public class Main {
 		case 1:
 			System.out.println("---Mobile Recharge Services---");
 			ServiceFactory mobileRechaServiceFactory = new MobileRecharge();
-			Form mobileForm=mobileRechaServiceFactory.createForm();
+			Form mobileForm = mobileRechaServiceFactory.createForm();
 			((MobileRecharge) mobileRechaServiceFactory).setCompanyChoice();
 			((MobileRecharge) mobileRechaServiceFactory).setPaymentChoice();
 			user1.requestRefund();
 			refundSubject.subscribe(user1);
-		
-		
 
 			break;
 		case 2:
 			System.out.println("---Internet Payment Services---");
 			ServiceFactory internetPaymentFactory = new InternetPayment();
-			Form internetForm= internetPaymentFactory.createForm();
+			Form internetForm = internetPaymentFactory.createForm();
 			((InternetPayment) internetPaymentFactory).setCompanyChoice();
 			((InternetPayment) internetPaymentFactory).setPaymentChoice();
 			internetForm.refund();
@@ -78,7 +80,7 @@ public class Main {
 		case 3:
 			System.out.println("---Landline Service---");
 			ServiceFactory landlineServiceFactory = new Landline();
-			Form landlineForm= landlineServiceFactory.createForm();
+			Form landlineForm = landlineServiceFactory.createForm();
 			((Landline) landlineServiceFactory).setReceiptChoice();
 			((Landline) landlineServiceFactory).setPaymentChoice();
 			landlineForm.refund();
@@ -100,7 +102,7 @@ public class Main {
 	public static void main(String[] args) {
 		int choice = 1;
 		while (choice != 3) {
-			user1.userRequestList = new ArrayList<>(); // 
+			user1.userRequestList = new ArrayList<>(); //
 			System.out.println("\n------Welcome to fawry system------");
 			System.out.println("Choose from the following \n1- Admin\n2- User\n3- Exit");
 			choice = sc.nextInt();
@@ -109,22 +111,18 @@ public class Main {
 				System.out.println("----Choose----");
 				System.out.println("1- Add discount");
 				System.out.println("2- View  refund requests");
-				System.out.println("3- Add new service provider");
-				System.out.println("4- Exit");
+				System.out.println("3- Exit");
 				int temp = sc.nextInt();
 				switch (temp) {
 				case 1:
 
 					break;
-				case 2:  ///
-                    System.out.println(refundSubject.requests);
-                    adminResponse();
-                    
-					break;
-				case 3:
+				case 2:
+					System.out.println(refundSubject.requests);
+					adminResponse();
 
 					break;
-				case 4:
+				case 3:
 					return;
 				default:
 					System.out.println("Unexpected value: " + temp);
@@ -142,6 +140,8 @@ public class Main {
 				case 1:
 					register();
 					prompt();
+					users.add(user1);
+					
 					break;
 				case 2:
 					login();
@@ -183,7 +183,7 @@ public class Main {
 		String username = sc.next();
 		System.out.println("Password:");
 		String password = sc.next();
-	//	User x = new User();
+		// User x = new User();
 		HashMap<String, String> loginUser = user1.getUserMap();
 		System.out.println("hash : " + loginUser); //
 		find(loginUser, username, password);
