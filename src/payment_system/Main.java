@@ -1,6 +1,9 @@
 package payment_system;
 
+import java.lang.invoke.StringConcatFactory;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.security.auth.Subject;
@@ -20,6 +23,27 @@ public class Main {
 	private static final Scanner sc = new Scanner(System.in);
 	private static User user1 = new User();
 	public static Refund refundSubject = new Refund();
+	
+	public static void adminResponse() {
+		
+		for (List<String> i : refundSubject.requests.keySet()) {
+			 System.out.println("loop");
+		//	if (i.equals(user1.userRequestList) && refundSubject.requests.get(i).equals(user1.refundedAmount)) {
+				
+				System.out.println("1-press a for Accepted \n2-press r for  Rejecterd");
+				String accepted =sc.next();
+				user1.accepted= accepted;
+				user1.userRequestList.add(accepted);
+				System.out.println(refundSubject.requests);
+			
+			
+//				break;
+//			}
+		}
+		
+	}
+	
+	
 
 	public static void prompt() {
 		System.out.println("Our Services: ");
@@ -76,8 +100,9 @@ public class Main {
 	public static void main(String[] args) {
 		int choice = 1;
 		while (choice != 3) {
+			user1.userRequestList = new ArrayList<>(); // 
 			System.out.println("\n------Welcome to fawry system------");
-			System.out.println("Choose from the following\n1- Admin\n2- User\n3- Exit");
+			System.out.println("Choose from the following \n1- Admin\n2- User\n3- Exit");
 			choice = sc.nextInt();
 			switch (choice) {
 			case 1: {
@@ -91,8 +116,10 @@ public class Main {
 				case 1:
 
 					break;
-				case 2:
-
+				case 2:  ///
+                    System.out.println(refundSubject.requests);
+                    adminResponse();
+                    
 					break;
 				case 3:
 

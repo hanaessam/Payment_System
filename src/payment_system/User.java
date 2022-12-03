@@ -20,7 +20,7 @@ public class User implements Observer {
 	Form form ;
 	Payment wallet= new Wallet();
 	private static final HashMap<String, String> loginUser = new HashMap<>();
-	public static List<String> userRequestList;
+	public  List<String> userRequestList;
 	public static int refundedAmount;
 	public static String accepted;
 	
@@ -38,7 +38,9 @@ public class User implements Observer {
 	public List< String> getUserListRequest(){
 		return userRequestList;
 	}
-	
+	public void setAccepted(String accepted) {
+		 this.accepted =accepted;
+	}
 	public String getUsername() {
 		 return User.username + "";
 	}
@@ -74,6 +76,7 @@ public class User implements Observer {
 //	        }
 //	    }
 	    public void requestRefund() {
+	    	
 	    	int choice = Form.refund();
 	    	if(choice==1) {
 	    	System.out.println("Enter amount to be refunded: ");
@@ -81,8 +84,8 @@ public class User implements Observer {
 			System.out.print( "user name  "+User.username);
 			//username = loginUser.get(username);
 			userRequestList.add(username);
-			accepted = "acc";
-			userRequestList.add(accepted);
+			//accepted = "";
+		//	userRequestList.add(accepted);
 			userRequestList = getUserListRequest();
 			System.out.print(userRequestList);
 	    }
