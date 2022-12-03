@@ -156,8 +156,8 @@ public class Main {
 		String username = sc.next();
 		System.out.println("Password:");
 		String password = sc.next();
-		User x = new User();
-		HashMap<String, String> loginUser = x.getUserMap();
+	//	User x = new User();
+		HashMap<String, String> loginUser = user1.getUserMap();
 		System.out.println("hash : " + loginUser); //
 		find(loginUser, username, password);
 	}

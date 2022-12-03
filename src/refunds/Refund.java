@@ -27,9 +27,9 @@ public class Refund implements Subject {
 	 * 
 	 * */
 	public void subscribe(Observer userObserver) {
-		this.userObserver = (User) userObserver;
-		System.out.println(((User) userObserver).username);
-			requests.put(((User) userObserver).refundedAmount,((User) userObserver).userRequestList);
+		Refund.userObserver = (User) userObserver;
+		System.out.println(User.username);
+			requests.put(User.refundedAmount,User.userRequestList);
 			System.out.println(requests);
 		}
 	

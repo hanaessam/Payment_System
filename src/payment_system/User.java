@@ -25,13 +25,13 @@ public class User implements Observer {
 	public static String accepted;
 	
 	public User() {
-		this.username = "";
+		User.username = "";
 		this.email = "";
 		this.password = "";
 		userRequestList  = new ArrayList<>();
 	}
 	public User(String username, String password, String email) {
-		this.username = username;
+		User.username = username;
 	    this.password = password;
 	    this.email = email;
 	}
@@ -40,7 +40,7 @@ public class User implements Observer {
 	}
 	
 	public String getUsername() {
-		 return this.username + "";
+		 return User.username + "";
 	}
 	public String getPassword() {
 		return this.password + "";
@@ -74,12 +74,12 @@ public class User implements Observer {
 //	        }
 //	    }
 	    public void requestRefund() {
-	    	int choice = form.refund();
+	    	int choice = Form.refund();
 	    	if(choice==1) {
 	    	System.out.println("Enter amount to be refunded: ");
 			refundedAmount = myObj.nextInt();
-			System.out.print( "user name  "+username);
-			username = loginUser.get(username);
+			System.out.print( "user name  "+User.username);
+			//username = loginUser.get(username);
 			userRequestList.add(username);
 			accepted = "acc";
 			userRequestList.add(accepted);
