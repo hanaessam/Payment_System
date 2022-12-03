@@ -17,6 +17,7 @@ public class DonationsForm extends Form {
 		System.out.println("1- Cancer Hospitals" + "\n" + "2- Schools" + "\n" + "3- NGOs");
 		donationChoice = myObj.nextInt();
 		choosePayment();
+		refund();
 	}
 	
 	

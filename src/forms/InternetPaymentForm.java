@@ -20,6 +20,7 @@ public class InternetPaymentForm extends Form {
 		System.out.println("1- Vodafone" + "\n" + "2- Etisalat" + "\n" + "3- WE" + "\n" + "4- Orange");
 		companyChoice = myObj.nextInt();
 		choosePayment();
+		refund();
 	}
 	
 	

@@ -20,6 +20,7 @@ public class LandlineForm extends Form {
 		System.out.println("1- Quarterly Reciept" + "\n" + "2- Monthly Reciept" + "\n" );
 		recieptChoice = myObj.nextInt();
 		choosePayment();
+		refund();
 	}
 	
 }

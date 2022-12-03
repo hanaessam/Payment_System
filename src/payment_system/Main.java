@@ -3,9 +3,12 @@ package payment_system;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import javax.security.auth.Subject;
+
 import forms.Form;
 import forms.LandlineForm;
 import payment.Wallet;
+import refunds.Refund;
 import services.Donations;
 import services.InternetPayment;
 import services.Landline;
@@ -16,6 +19,7 @@ public class Main {
 	static Scanner myObj = new Scanner(System.in);
 	private static final Scanner sc = new Scanner(System.in);
 	private static User user1 = new User();
+	public static Refund refundSubject = new Refund();
 
 	public static void prompt() {
 		System.out.println("Our Services: ");
@@ -33,7 +37,8 @@ public class Main {
 			Form mobileForm=mobileRechaServiceFactory.createForm();
 			((MobileRecharge) mobileRechaServiceFactory).setCompanyChoice();
 			((MobileRecharge) mobileRechaServiceFactory).setPaymentChoice();
-			mobileForm.refund();
+			user1.requestRefund();
+			refundSubject.subscribe(user1);
 
 			break;
 		case 2:

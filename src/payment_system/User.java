@@ -1,6 +1,8 @@
 package payment_system;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 import payment.Payment;
@@ -15,8 +17,10 @@ public class User implements Observer {
 	private final String email;
 	private final String password;
 	Payment wallet= new Wallet();
-	Refund refund;
 	private static final HashMap<String, String> loginUser = new HashMap<>();
+	public static List<String> userRequestList = new ArrayList<>();
+	public static int refundedAmount;
+	public static String accepted;
 	
 	public User() {
 		this.username = "";
@@ -62,6 +66,10 @@ public class User implements Observer {
 	        }
 	    }
 	    public void requestRefund() {
-	    	
+	    	System.out.println("Enter amount to be refunded: ");
+			refundedAmount = myObj.nextInt();
+			userRequestList.add(username);
+			accepted = "";
+			userRequestList.add(accepted);
 	    }
 }
