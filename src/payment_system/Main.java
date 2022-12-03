@@ -16,7 +16,7 @@ import services.ServiceFactory;
 public class Main {
 	static Scanner myObj = new Scanner(System.in);
 	private static final Scanner sc = new Scanner(System.in);
-	private static User user1 = new User("", "", "");
+	private static User user1 = new User();
 
 	public static void prompt() {
 		System.out.println("Our Services: ");
@@ -32,11 +32,15 @@ public class Main {
 			System.out.println("---Mobile Recharge Services---");
 			ServiceFactory mobileRechaServiceFactory = new MobileRecharge();
 			mobileRechaServiceFactory.createForm();
+			((MobileRecharge)mobileRechaServiceFactory).setCompanyChoice();
+			((MobileRecharge)mobileRechaServiceFactory).setPaymentChoice();
 			break;
 		case 2:
 			System.out.println("---Internet Payment Services---");
 			ServiceFactory internetPaymentFactory = new InternetPayment();
 			internetPaymentFactory.createForm();
+			((InternetPayment)internetPaymentFactory).setCompanyChoice();
+			((InternetPayment)internetPaymentFactory).setPaymentChoice();
 			break;
 		case 3:
 			System.out.println("---Landline Service---");
@@ -44,53 +48,81 @@ public class Main {
 			landlineServiceFactory.createForm();
 			((Landline)landlineServiceFactory).setReceiptChoice();
 			((Landline)landlineServiceFactory).setPaymentChoice();
-			
 			break;
 		case 4:
 			System.out.println("---Donation Services---");
 			ServiceFactory donationServiceFactory = new Donations();
 			donationServiceFactory.createForm();
+			((Donations)donationServiceFactory).setDonationChoice();
+			((Donations)donationServiceFactory).setPaymentChoice();
 			break;
 		case 5:
 			System.out.println("---Add funds to wallet---");
-			int funds = myObj.nextInt();
-			((Wallet)user1.getWallet()).addFunds(funds);
+			((Wallet)user1.wallet).addFunds();
 		}
-		
 	}
 
 	public static void main(String[] args) {
-//		int choice = 1;
-//		do {
-//			boolean exitRequested = false;
-//			while (!exitRequested) {
-//				System.out.println("------Welcome to fawry system------");
-//				System.out.println("1- Sign up");
-//				System.out.println("2- Log in");
-//				System.out.println("3- Exit");
-//				System.out.println("Enter 1, to sign up or 2 to log in, 3 for exit");				
-//				choice = sc.nextInt();
-//				switch (choice) {
-//				case 1:
-//					register();
-//					prompt();
-//					break;
-//
-//				case 2:
-//					login();
-//					prompt();
-//					break;
-//
-//				case 3:
-//					exitRequested = true;
-//					break;
-//
-//				default:
-//					System.out.println("?");
-//					break;
-//				}
-//			}
-//		} while (choice != 3);
+		int choice = 1;
+		while (choice != 3){
+			System.out.println("\n------Welcome to fawry system------");
+			System.out.println("Choose from the following\n1- Admin\n2- User\n3- Exit");
+			choice = sc.nextInt();
+			switch (choice) {
+			case 1: {
+				System.out.println("----Choose----");
+				System.out.println("1- Add discount");
+				System.out.println("2- View  refund requests");
+				System.out.println("3- Add new service provider");
+				System.out.println("4- Exit");
+				int temp = sc.nextInt();
+				switch (temp) {
+				case 1:
+					
+					break;
+				case 2:
+					
+					break;
+				case 3:
+					
+					break;
+				case 4:
+					return;
+				default:
+					System.out.println("Unexpected value: " + temp);
+					break;
+				}
+				break;
+			}
+			case 2:{
+				System.out.println("\n1- Sign up");
+				System.out.println("2- Log in");
+				System.out.println("3- Exit");
+				System.out.println("Enter 1, to sign up or 2 to log in, 3 for exit");				
+				int temp = sc.nextInt();
+				switch (temp) {
+				case 1:
+					register();
+					prompt();
+					break;
+				case 2:
+					login();
+					prompt();
+					break;
+				case 3:
+					return;
+				default:
+					System.out.println("Unexpected value: " + temp);
+					break;
+				}
+				break;
+			}
+			case 3:
+				return;
+			default:
+				System.out.println("Unexpected value: " + choice);
+			}
+		}
 		prompt();
 	}
 

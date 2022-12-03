@@ -13,7 +13,7 @@ public class User implements Observer {
 	private final String username;
 	private final String email;
 	private final String password;
-	Payment wallet;
+	Payment wallet= new Wallet();
 	Refund refund;
 	private static final HashMap<String, String> loginUser = new HashMap<>();
 	
@@ -21,16 +21,11 @@ public class User implements Observer {
 		this.username = "";
 		this.email = "";
 		this.password = "";
-		wallet = new Wallet();
 	}
 	public User(String username, String password, String email) {
 		this.username = username;
 	    this.password = password;
 	    this.email = email;
-	}
-	
-	public Payment getWallet() {
-		return ((Wallet)wallet);
 	}
 	
 	public String getUsername() {
@@ -65,6 +60,4 @@ public class User implements Observer {
 	            System.out.println("No member with username " +member.getUsername());
 	        }
 	    }
-
-
 }

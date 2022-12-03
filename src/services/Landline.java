@@ -11,8 +11,8 @@ import payment.Wallet;
 public class Landline implements ServiceFactory, LandlineServiceProvider{
 	public static Form form ;
 	public static Payment payment ;
+	public static Discount discount;
 	public static ReceiptBehavior receiptBehavior;
-	Discount discount = new ServicePrice();
 	
 	public Landline() {
 		super();
@@ -24,23 +24,29 @@ public class Landline implements ServiceFactory, LandlineServiceProvider{
 		return (LandlineForm)form;
 	}
 	
-	public static void setPaymentChoice() {
+	public void setPaymentChoice() {
 		int choice = ((LandlineForm)form).paymentChoice;
 		if(choice == 1) {
 			payment = new CreditCard();
-			System.out.println(((LandlineForm)form).amount);
-			((CreditCard)payment).calculatePayment(((LandlineForm)form).amount);
-			
+			boolean state=payment.calculatePayment(((LandlineForm)form).amount);
+			if(!state) {
+				((LandlineForm)form).choosePayment();
+				setPaymentChoice();
+			}
 		}else if(choice == 2) {
 			payment = new Cash();
+			payment.calculatePayment(((LandlineForm)form).amount);
 		}else {
 			payment = new Wallet();
-			((Wallet)payment).calculatePayment(((LandlineForm)form).amount);
+			boolean state=payment.calculatePayment(((LandlineForm)form).amount);
+			if(!state) {
+				((LandlineForm)form).choosePayment();
+				setPaymentChoice();
+			}
 		}
-		
 	}
 	
-	public static void setReceiptChoice() {		
+	public void setReceiptChoice() {		
 		int choice = ((LandlineForm)form).recieptChoice;
 		if(choice == 1 ) {
 			receiptBehavior = new QuarterlyReceipt();

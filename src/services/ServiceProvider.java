@@ -1,6 +1,5 @@
 package services;
 
 public interface ServiceProvider {
-	public static final ServiceBehavior servicebehavior = null;
-	
+	public void setCompanyChoice();
 }
