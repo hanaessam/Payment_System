@@ -13,7 +13,7 @@ public abstract class Form {
 	public static int amount;
 	public static Payment payment ;
 	public abstract void formHandler();
-	public int refund() {
+	public static int refund() {
 		int choice;
 		System.out.println("Do you want a refund:\n"+"1- Yes\n"+"2- No");	
 		choice=myObj.nextInt();

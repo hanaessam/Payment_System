@@ -13,10 +13,10 @@ public class Refund implements Subject {
 	public static String accepted;
 	public static Form form;
 	private static Scanner myObj = new Scanner(System.in);
-	public static int refundedAmount;
+//	public static int refundedAmount;
 	public static Observer userObserver;
 	public static String observerUsername;
-	public static List<String> userRequestList = new ArrayList<>();
+	//public static List<String> userRequestList = new ArrayList<>();
 	/*
 	 * 1- choice nt-check beh
 	 * 2- enter el amount to be refunded
@@ -27,13 +27,12 @@ public class Refund implements Subject {
 	 * 
 	 * */
 	public void subscribe(Observer userObserver) {
-		
-		int choice = form.refund();
-		if(choice == 1) {
-			requests.put(refundedAmount,((User) userObserver).userRequestList);
+		this.userObserver = (User) userObserver;
+		System.out.println(((User) userObserver).username);
+			requests.put(((User) userObserver).refundedAmount,((User) userObserver).userRequestList);
 			System.out.println(requests);
 		}
-	};
+	
 	public void unSubscribe(Observer observer) {};
 	public void notifyObservers() {};
 }

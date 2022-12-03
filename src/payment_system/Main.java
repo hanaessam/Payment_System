@@ -39,6 +39,8 @@ public class Main {
 			((MobileRecharge) mobileRechaServiceFactory).setPaymentChoice();
 			user1.requestRefund();
 			refundSubject.subscribe(user1);
+		
+		
 
 			break;
 		case 2:
@@ -144,6 +146,8 @@ public class Main {
 		String password = sc.next();
 		User newMember = new User(username, password, email);
 		user1.register(newMember);
+		user1.username = username;
+
 		login(); // call login after registering
 	}
 
