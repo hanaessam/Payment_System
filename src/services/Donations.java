@@ -10,25 +10,23 @@ import payment.Payment;
 import payment.Wallet;
 
 public class Donations extends ServiceFactory {
-
-	public static Discount discount;
-
+	Schools schools;
+	CancerHospital hospital;
+	NGOs ngos;
 	@Override
 	public Form createForm() {
 		form = new DonationsForm();
 		return (DonationsForm)form;
 	}
 	
-	public void setDonationChoice() {		
+	public void setDonationChoice() {
 		int choice = ((DonationsForm)form).donationChoice;
 		if (choice == 1) {
-//			choice = new ;
+			schools = new Schools(((DonationsForm)form).amount);
 		} else if (choice == 2) {
-//			choice = new ;
+			hospital = new CancerHospital(((DonationsForm)form).amount);
 		} else if (choice == 3) {
-//			choice = new ;
+			ngos = new NGOs(((DonationsForm)form).amount);
 		}
 	}
-
-
 }

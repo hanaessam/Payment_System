@@ -3,13 +3,14 @@ package discounts;
 public class OverallDiscount extends DiscountDecorator{
 	
 	public OverallDiscount(Discount discount) {
-		super();
+		super(discount);
 		this.discount = discount;
 	}
-	public float calculateDicount(int discountPercentage) {
-		System.out.println("Discount fel overall"+discountPercentage);
-		System.out.println("service price "+discount.calculateDicount(discountPercentage));
-		float result=((float)discountPercentage/100) * discount.calculateDicount(discountPercentage);
+	public float calculateDicount(int price) {
+		System.out.println("Discount fel overall"+percent);
+		System.out.println("price fel overall abl el discount:"+price+"\n");
+//		System.out.println("service price "+(discount).calculateDicount(price));
+		float result= price - (((float)(percent)/100 * price));
 		System.out.println("res overall"+result);
 		return result;
 	}

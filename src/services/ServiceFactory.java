@@ -3,8 +3,8 @@ package services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
-
 import discounts.Discount;
+import discounts.DiscountDecorator;
 import discounts.OverallDiscount;
 import discounts.ServicePrice;
 import discounts.SpecificDiscount;
@@ -23,24 +23,24 @@ public abstract class ServiceFactory {
 	public static int overallDiscount = 0;
 	public static int specificDiscount = 0;
 	
-	
 	public void setPaymentChoice() {
 		System.out.println("overall:"+overallDiscount);
 		System.out.println("specific:"+specificDiscount);
 		int choice = ((Form)form).paymentChoice;
 		discount = new ServicePrice(form.amount);
 		System.out.println(ServicePrice.servicePrice);
-		if(overallDiscount!=0) {
-			discount = new OverallDiscount(discount);
-			((Form)form).amount = (int)discount.calculateDicount(overallDiscount);
-			System.out.println(discount.calculateDicount(overallDiscount));
-		}
 		if(specificDiscount!=0) {
 			discount=new SpecificDiscount(discount);
-			((Form)form).amount = (int)discount.calculateDicount(specificDiscount);
-			System.out.println(discount.calculateDicount(specificDiscount));
+			((DiscountDecorator)discount).percent = specificDiscount;
+			form.amount = (int)discount.calculateDicount(form.amount);
+			System.out.println(form.amount);
 		}
-		
+		if(overallDiscount!=0) {
+				discount = new OverallDiscount(discount);
+				((DiscountDecorator)discount).percent = overallDiscount;
+				form.amount = (int)discount.calculateDicount(form.amount);
+				System.out.println(form.amount);
+		}
 		if(choice == 1) {
 			payment = new CreditCard();
 			boolean state=payment.calculatePayment(((Form)form).amount);

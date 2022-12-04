@@ -7,7 +7,7 @@ public class ServicePrice implements Discount {
 		this.servicePrice = servicePrice;
 	}
 	
-	public float calculateDicount(int dicountPercentage) {
-		return servicePrice;
+	public float calculateDicount(int price) {
+		return price;
 	}
 }

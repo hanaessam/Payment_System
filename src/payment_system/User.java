@@ -60,31 +60,14 @@ public class User implements Observer {
 	public HashMap<String, String> getUserMap() {
 		return loginUser;
 	}
-//	 public boolean isUserExist(User user){
-//	        if(loginUser.containsKey(user.getUsername()) && loginUser.containsValue(user.getPassword())){
-//	            return true;
-//	        } else {
-//	            System.out.println("No member in the list!");
-//	        }
-//	        return false;
-//	    }
-
-	// something also wrong here
+	
 	public void register(User user) {
 		loginUser.put(user.getUsername(), user.getPassword());
 		System.out.println("here: " + user.getUsername());
 		System.out.println("here: " + user.getPassword());
 	}
 
-//	    public void login(User member){
-//	        if(isUserExist(member)) {
-//	            System.out.println("Hello " + member.getEmail());
-//	        } else {
-//	            System.out.println("No member with username " +member.getUsername());
-//	        }
-//	    }
 	public void requestRefund() {
-
 		int choice = Form.refund();
 		if (choice == 1) {
 			System.out.println("Enter amount to be refunded: ");
@@ -98,5 +81,4 @@ public class User implements Observer {
 			System.out.print(userRequestList);
 		}
 	}
-
 }

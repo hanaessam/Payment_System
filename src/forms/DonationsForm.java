@@ -19,6 +19,4 @@ public class DonationsForm extends Form {
 		choosePayment();
 		refund();
 	}
-	
-	
 }
