@@ -25,25 +25,32 @@ public class Main {
 	private static User user1 = new User();
 	public static Refund refundSubject = new Refund();
 	public static List<User> users=new ArrayList<>();
-
+	public static ServiceFactory mobileRechaServiceFactory = new MobileRecharge();
+	public static ServiceFactory internetPaymentFactory = new InternetPayment();
+	public static ServiceFactory landlineServiceFactory = new Landline();
+	public static ServiceFactory donationServiceFactory = new Donations();
+	
+	
 	public static HashMap<List<String>, Integer> adminResponse() {
 
 		for (List<String> i : refundSubject.requests.keySet()) {
-			System.out.println("loop");
-			System.out.println(i);
-			System.out.println("1-press a for Accepted \n2-press r for  Rejecterd");
-			String accepted = sc.next();
-			if (!i.contains("a") && !i.contains("r")) {
-				i.add(accepted);
-			}
-			System.out.println(refundSubject.requests);
-			for(int j=0;j<users.size();j++) {
-				if(users.get(j).username == i.get(0)) {
-				    System.out.println(refundSubject.requests.get(i));
-					((Wallet)users.get(j).wallet).setWalletBalance(refundSubject.requests.get(i));
-					break;
+			if(i.size() != 2) {
+				System.out.println("1-enter 'a' for Accepted \n2-enter 'r' for  Rejecterd");
+				String accepted = sc.next();
+				if (!(i.contains("a") && i.contains("r"))) {
+					i.add(accepted);
+				}
+				System.out.println(refundSubject.requests);
+				for(int j=0;j<users.size();j++) {
+					if(users.get(j).username == i.get(0) && accepted == "a" && accepted == "r") {
+					    System.out.println("List of requests: "+ refundSubject.requests.get(i));
+						((Wallet)users.get(j).wallet).setWalletBalance(refundSubject.requests.get(i));
+						
+						break;
+					}
 				}
 			}
+			
 		}
 		return (HashMap<List<String>, Integer>) refundSubject.requests;
 
@@ -61,17 +68,14 @@ public class Main {
 		switch (switchNum) {
 		case 1:
 			System.out.println("---Mobile Recharge Services---");
-			ServiceFactory mobileRechaServiceFactory = new MobileRecharge();
 			Form mobileForm = mobileRechaServiceFactory.createForm();
 			((MobileRecharge) mobileRechaServiceFactory).setCompanyChoice();
 			((MobileRecharge) mobileRechaServiceFactory).setPaymentChoice();
 			user1.requestRefund();
 			refundSubject.subscribe(user1);
-
 			break;
 		case 2:
 			System.out.println("---Internet Payment Services---");
-			ServiceFactory internetPaymentFactory = new InternetPayment();
 			Form internetForm = internetPaymentFactory.createForm();
 			((InternetPayment) internetPaymentFactory).setCompanyChoice();
 			((InternetPayment) internetPaymentFactory).setPaymentChoice();
@@ -79,7 +83,6 @@ public class Main {
 			break;
 		case 3:
 			System.out.println("---Landline Service---");
-			ServiceFactory landlineServiceFactory = new Landline();
 			Form landlineForm = landlineServiceFactory.createForm();
 			((Landline) landlineServiceFactory).setReceiptChoice();
 			((Landline) landlineServiceFactory).setPaymentChoice();
@@ -87,7 +90,6 @@ public class Main {
 			break;
 		case 4:
 			System.out.println("---Donation Services---");
-			ServiceFactory donationServiceFactory = new Donations();
 			Form donationForm = donationServiceFactory.createForm();
 			((Donations) donationServiceFactory).setDonationChoice();
 			((Donations) donationServiceFactory).setPaymentChoice();
@@ -115,12 +117,54 @@ public class Main {
 				int temp = sc.nextInt();
 				switch (temp) {
 				case 1:
+					 int c;
+					System.out.println("\n1- Overall Descount \n2- Specific Discount");
+					c = myObj.nextInt();
+					if(c == 2) {
+						System.out.println("Our Services \n1- Mobile Recharge Services");
+						System.out.println("2- Internet Payment Services");
+						System.out.println("3- Landline Services ");
+						System.out.println("4- Donation Services ");
+						System.out.println("Enter your service: ");
+						int s = myObj.nextInt();
+						System.out.println("Enter the percentage of the discount: ");
+						
+						int discountPercentSpecific = myObj.nextInt();
+						
+						switch (s) {
+						case 1: {
+							mobileRechaServiceFactory.specificDiscount = discountPercentSpecific;
+							break;
+						}
+						case 2:{
+							internetPaymentFactory.specificDiscount = discountPercentSpecific;
+							break;
+						}
+						case 3:{
+							landlineServiceFactory.specificDiscount = discountPercentSpecific;
+							break;
+						}
+						case 4:{
+							donationServiceFactory.specificDiscount = discountPercentSpecific;
+							break;
+						}
+						default:
+							throw new IllegalArgumentException("Unexpected value: " + s);
+						}
+					}else {
+						System.out.println("Enter the percentage of the discount: ");
+						int discountPercentOverall = myObj.nextInt();
+						mobileRechaServiceFactory.overallDiscount = discountPercentOverall;
+						internetPaymentFactory.overallDiscount = discountPercentOverall;
+						landlineServiceFactory.overallDiscount = discountPercentOverall;
+						donationServiceFactory.overallDiscount = discountPercentOverall;
+					}
 
+					
 					break;
 				case 2:
 					System.out.println(refundSubject.requests);
 					adminResponse();
-
 					break;
 				case 3:
 					return;
