@@ -10,7 +10,7 @@ import payment.Wallet;
 
 public class Landline extends ServiceFactory implements LandlineServiceProvider{
 
-	public static Discount discount;
+	
 	public static ReceiptBehavior receiptBehavior;
 	
 	public Landline() {

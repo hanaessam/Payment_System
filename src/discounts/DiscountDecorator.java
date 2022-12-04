@@ -1,6 +1,5 @@
 package discounts;
 
 public abstract class DiscountDecorator implements Discount {
-	Discount discount;
-
+	public static Discount discount;	
 }
