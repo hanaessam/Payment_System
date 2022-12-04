@@ -17,6 +17,5 @@ public class DonationsForm extends Form {
 		System.out.println("Enter the Amount you want to donate : ");
 		amount = myObj.nextInt();
 		choosePayment();
-		refund();
 	}
 }

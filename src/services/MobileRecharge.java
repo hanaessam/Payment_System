@@ -10,7 +10,6 @@ import payment.Payment;
 import payment.Wallet;
 
 public class MobileRecharge extends ServiceFactory implements ServiceProvider{
-	public static Discount discount;
 	public static ServiceBehavior serviceBehavior;
 	
 	public MobileRecharge() {

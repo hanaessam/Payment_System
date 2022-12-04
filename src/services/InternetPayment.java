@@ -10,8 +10,6 @@ import payment.Payment;
 import payment.Wallet;
 
 public class InternetPayment extends ServiceFactory implements ServiceProvider {
-
-	public static Discount discount;
 	public static ServiceBehavior serviceBehavior;
 
 	public InternetPayment() {
@@ -38,6 +36,4 @@ public class InternetPayment extends ServiceFactory implements ServiceProvider {
 			serviceBehavior = new Orange();
 		}
 	}
-	
-
 }

@@ -5,10 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-
 import javax.security.auth.Subject;
-
-
 import forms.Form;
 import forms.LandlineForm;
 import payment.Wallet;
@@ -30,9 +27,7 @@ public class Main {
 	public static ServiceFactory landlineServiceFactory = new Landline();
 	public static ServiceFactory donationServiceFactory = new Donations();
 	
-	
 	public static HashMap<List<String>, Integer> adminResponse() {
-
 		for (List<String> i : refundSubject.requests.keySet()) {
 			if(i.size() != 2) {
 				System.out.println("1-enter 'a' for Accepted \n2-enter 'r' for  Rejecterd");
@@ -45,15 +40,12 @@ public class Main {
 					if(users.get(j).username == i.get(0) && accepted == "a" && accepted == "r") {
 					    System.out.println("List of requests: "+ refundSubject.requests.get(i));
 						((Wallet)users.get(j).wallet).setWalletBalance(refundSubject.requests.get(i));
-						
 						break;
 					}
 				}
 			}
-			
 		}
 		return (HashMap<List<String>, Integer>) refundSubject.requests;
-
 	}
 
 	public static void prompt() {
@@ -71,29 +63,36 @@ public class Main {
 			Form mobileForm = mobileRechaServiceFactory.createForm();
 			((MobileRecharge) mobileRechaServiceFactory).setCompanyChoice();
 			((MobileRecharge) mobileRechaServiceFactory).setPaymentChoice();
-			user1.requestRefund();
-			refundSubject.subscribe(user1);
+			if( user1.requestRefund(((MobileRecharge) mobileRechaServiceFactory).form.amount) ) {
+				refundSubject.subscribe(user1);
+			}
 			break;
 		case 2:
 			System.out.println("---Internet Payment Services---");
 			Form internetForm = internetPaymentFactory.createForm();
 			((InternetPayment) internetPaymentFactory).setCompanyChoice();
 			((InternetPayment) internetPaymentFactory).setPaymentChoice();
-			internetForm.refund();
+			if( user1.requestRefund(((InternetPayment) internetPaymentFactory).form.amount) ) {
+				refundSubject.subscribe(user1);
+			}
 			break;
 		case 3:
 			System.out.println("---Landline Service---");
 			Form landlineForm = landlineServiceFactory.createForm();
 			((Landline) landlineServiceFactory).setReceiptChoice();
 			((Landline) landlineServiceFactory).setPaymentChoice();
-			landlineForm.refund();
+			if ( user1.requestRefund(((Landline) landlineServiceFactory).form.amount) ) {
+				refundSubject.subscribe(user1);
+			}
 			break;
 		case 4:
 			System.out.println("---Donation Services---");
 			Form donationForm = donationServiceFactory.createForm();
 			((Donations) donationServiceFactory).setDonationChoice();
 			((Donations) donationServiceFactory).setPaymentChoice();
-			donationForm.refund();
+			if( user1.requestRefund(((Donations) donationServiceFactory).form.amount) ) {
+				refundSubject.subscribe(user1);
+			}
 			break;
 		case 5:
 			System.out.println("---Add funds to wallet---");
@@ -124,11 +123,9 @@ public class Main {
 						System.out.println("Our Services \n1- Mobile Recharge Services");
 						System.out.println("2- Internet Payment Services");
 						System.out.println("3- Landline Services ");
-						System.out.println("4- Donation Services ");
 						System.out.println("Enter your service: ");
 						int s = myObj.nextInt();
 						System.out.println("Enter the percentage of the discount: ");
-						
 						int discountPercentSpecific = myObj.nextInt();
 						
 						switch (s) {
@@ -144,10 +141,6 @@ public class Main {
 							landlineServiceFactory.specificDiscount = discountPercentSpecific;
 							break;
 						}
-						case 4:{
-							donationServiceFactory.specificDiscount = discountPercentSpecific;
-							break;
-						}
 						default:
 							throw new IllegalArgumentException("Unexpected value: " + s);
 						}
@@ -157,10 +150,7 @@ public class Main {
 						mobileRechaServiceFactory.overallDiscount = discountPercentOverall;
 						internetPaymentFactory.overallDiscount = discountPercentOverall;
 						landlineServiceFactory.overallDiscount = discountPercentOverall;
-						donationServiceFactory.overallDiscount = discountPercentOverall;
 					}
-
-					
 					break;
 				case 2:
 					System.out.println(refundSubject.requests);
@@ -185,7 +175,6 @@ public class Main {
 					register();
 					prompt();
 					users.add(user1);
-					
 					break;
 				case 2:
 					login();
@@ -218,8 +207,7 @@ public class Main {
 		User newMember = new User(username, password, email);
 		user1.register(newMember);
 		user1.username = username;
-
-		login(); // call login after registering
+		login(); 
 	}
 
 	public static void login() {
@@ -227,7 +215,6 @@ public class Main {
 		String username = sc.next();
 		System.out.println("Password:");
 		String password = sc.next();
-		// User x = new User();
 		HashMap<String, String> loginUser = user1.getUserMap();
 		System.out.println("hash : " + loginUser); //
 		find(loginUser, username, password);

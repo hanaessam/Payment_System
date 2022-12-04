@@ -60,25 +60,29 @@ public class User implements Observer {
 	public HashMap<String, String> getUserMap() {
 		return loginUser;
 	}
-	
+
 	public void register(User user) {
 		loginUser.put(user.getUsername(), user.getPassword());
-		System.out.println("here: " + user.getUsername());
-		System.out.println("here: " + user.getPassword());
+		System.out.println("username: " + user.getUsername());
+		System.out.println("password: " + user.getPassword());
 	}
 
-	public void requestRefund() {
+	public boolean requestRefund(int amount) {
 		int choice = Form.refund();
 		if (choice == 1) {
 			System.out.println("Enter amount to be refunded: ");
 			refundedAmount = myObj.nextInt();
-			System.out.print("user name  " + User.username);
-			// username = loginUser.get(username);
-			userRequestList.add(username);
-			// accepted = "";
-			// userRequestList.add(accepted);
-			userRequestList = getUserListRequest();
-			System.out.print(userRequestList);
+			if(amount==refundedAmount) {
+				System.out.print("user name  " + User.username);
+				userRequestList.add(username);
+				userRequestList = getUserListRequest();
+				System.out.print(userRequestList);
+				return true;
+			}
+			else {
+				System.out.println("You have to refund a complete transaction");
+			}
 		}
+		return false;
 	}
 }

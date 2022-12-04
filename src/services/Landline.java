@@ -9,10 +9,7 @@ import payment.Payment;
 import payment.Wallet;
 
 public class Landline extends ServiceFactory implements LandlineServiceProvider{
-
-	
 	public static ReceiptBehavior receiptBehavior;
-	
 	public Landline() {
 		super();
 		System.out.println("Landline here...");

@@ -20,7 +20,5 @@ public class MobileRechargeForm extends Form {
 		System.out.println("Enter the Amount you want to pay : ");
 		amount = myObj.nextInt();
 		choosePayment();
-		//refund();
 	}
-
 }

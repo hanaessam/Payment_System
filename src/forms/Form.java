@@ -6,7 +6,6 @@ import payment.Cash;
 import payment.CreditCard;
 import payment.Payment;
 
-
 public abstract class Form {
 	private static Scanner myObj = new Scanner(System.in);
 	public static int paymentChoice;
@@ -25,4 +24,3 @@ public abstract class Form {
 		paymentChoice = myObj.nextInt();
 	}
 }
-
