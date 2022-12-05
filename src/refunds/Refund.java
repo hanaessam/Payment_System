@@ -1,12 +1,12 @@
 package refunds;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 import forms.Form;
+import payment_system.MainForm;
 import payment_system.User;
 
 public class Refund implements Subject {
@@ -16,7 +16,7 @@ public class Refund implements Subject {
 	private static Scanner myObj = new Scanner(System.in);
 	public static Observer userObserver;
 	public static String observerUsername;
-	Form userForm;
+	MainForm userForm;
 	
 	
 	public void subscribe(Observer userObserver) {
@@ -37,5 +37,4 @@ public class Refund implements Subject {
             user.update();
         }
 	}
-	
 }

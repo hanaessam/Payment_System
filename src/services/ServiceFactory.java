@@ -1,8 +1,5 @@
 package services;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
 import discounts.Discount;
 import discounts.DiscountDecorator;
 import discounts.OverallDiscount;
@@ -13,7 +10,6 @@ import payment.Cash;
 import payment.CreditCard;
 import payment.Payment;
 import payment.Wallet;
-import payment_system.User;
 
 public abstract class ServiceFactory {
 	Discount discount;

@@ -1,14 +1,7 @@
 package payment_system;
 
-import java.lang.invoke.StringConcatFactory;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
-import javax.security.auth.Subject;
-import forms.Form;
-import forms.LandlineForm;
-import payment.Wallet;
 import refunds.Refund;
 import services.Donations;
 import services.InternetPayment;
@@ -18,12 +11,7 @@ import services.ServiceFactory;
 
 public class Main {
 	public static Scanner myObj = new Scanner(System.in);
-	public static Refund refundSubject = new Refund();
-	public static Form userForm;
-	public static ServiceFactory mobileRechaServiceFactory = new MobileRecharge();
-	public static ServiceFactory internetPaymentFactory = new InternetPayment();
-	public static ServiceFactory landlineServiceFactory = new Landline();
-	public static ServiceFactory donationServiceFactory = new Donations();
+	public static MainForm userForm;
 	
 	public static void main(String[] args) {
 		int choice = 1;
@@ -69,7 +57,4 @@ public class Main {
 		}
 		userForm.getUserPrompt();
 	}
-	
 }
-
-	

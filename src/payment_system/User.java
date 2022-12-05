@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-
 import forms.Form;
 import payment.Payment;
 import payment.Wallet;
 import refunds.Observer;
-import refunds.Refund;
 
 public class User implements Observer {
 	Scanner myObj = new Scanner(System.in);
@@ -82,5 +80,6 @@ public class User implements Observer {
 		return false;
 	}
 	public void update() {
-		System.out.println("Refunded amount updated!");}
+		System.out.println("Refunded amount updated!");
 	}
+}
