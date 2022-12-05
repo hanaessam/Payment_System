@@ -18,7 +18,7 @@ public class User implements Observer {
 	private final String email;
 	private final String password;
 	Form form;
-	Payment wallet = new Wallet();
+	public Payment wallet = new Wallet();
 	private static final HashMap<String, String> loginUser = new HashMap<>();
 	public List<String> userRequestList;
 	public static int refundedAmount;
@@ -63,8 +63,6 @@ public class User implements Observer {
 
 	public void register(User user) {
 		loginUser.put(user.getUsername(), user.getPassword());
-		System.out.println("username: " + user.getUsername());
-		System.out.println("password: " + user.getPassword());
 	}
 
 	public boolean requestRefund(int amount) {
@@ -73,10 +71,8 @@ public class User implements Observer {
 			System.out.println("Enter amount to be refunded: ");
 			refundedAmount = myObj.nextInt();
 			if(amount==refundedAmount) {
-				System.out.print("user name  " + User.username);
 				userRequestList.add(username);
 				userRequestList = getUserListRequest();
-				System.out.print(userRequestList);
 				return true;
 			}
 			else {
@@ -85,4 +81,6 @@ public class User implements Observer {
 		}
 		return false;
 	}
-}
+	public void update() {
+		System.out.println("Refunded amount updated!");}
+	}

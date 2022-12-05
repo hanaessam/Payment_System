@@ -1,6 +1,7 @@
-/forms/
-/payment_system/
-/payment/
-/services/
 /discounts/
+/forms/
+/module-info.class
+/payment/
+/payment_system/
 /refunds/
+/services/

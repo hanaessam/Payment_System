@@ -8,7 +8,6 @@ public class Wallet implements Payment {
 	public static int walletBalance = 0;
 	
 	public boolean calculatePayment(int amount) {
-		// TODO Auto-generated method stub
 		if(walletBalance==0 || walletBalance<amount) {
 			System.out.println("\nWallet = "+walletBalance);
 			System.out.println("Wallet balance is not enough"+"\nChoose another payment method");

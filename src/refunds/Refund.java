@@ -16,12 +16,26 @@ public class Refund implements Subject {
 	private static Scanner myObj = new Scanner(System.in);
 	public static Observer userObserver;
 	public static String observerUsername;
+	Form userForm;
+	
+	
 	public void subscribe(Observer userObserver) {
 		Refund.userObserver = (User) userObserver;
 		System.out.println(User.username);
 			requests.put(((User) userObserver).userRequestList,((User) userObserver).refundedAmount);
 			System.out.println(requests);
 	}
-	public void unSubscribe(Observer observer) {};
-	public void notifyObservers() {};
+	public void unSubscribe(Observer observer) {
+		Refund.userObserver = (User) userObserver;
+		System.out.println(User.username);
+			requests.remove(((User) userObserver).userRequestList,((User) userObserver).refundedAmount);
+			System.out.println(requests);
+	};
+	
+	public void notifyObservers(String message) {
+        for (User user : userForm.users) {
+            user.update();
+        }
+	}
+	
 }
