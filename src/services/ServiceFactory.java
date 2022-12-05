@@ -24,8 +24,6 @@ public abstract class ServiceFactory {
 	public static int specificDiscount = 0;
 	
 	public void setPaymentChoice() {
-		System.out.println("overall:"+overallDiscount);
-		System.out.println("specific:"+specificDiscount);
 		int choice = ((Form)form).paymentChoice;
 		discount = new ServicePrice(form.amount);
 		System.out.println(ServicePrice.servicePrice);

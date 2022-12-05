@@ -13,9 +13,7 @@ public class InternetPayment extends ServiceFactory implements ServiceProvider {
 	public static ServiceBehavior serviceBehavior;
 
 	public InternetPayment() {
-		// TODO Auto-generated constructor stub
 		super();
-		System.out.println("Internet Payment here...");
 	}
 	
 	public Form createForm() {
