@@ -38,7 +38,7 @@ public abstract class Form {
 		System.out.println("1- Credit card" + "\n" + "2- Cash" + "\n" + "3- Wallet" + "\n" );
 		paymentChoice = myObj.nextInt();
 	}
-	public static void userpPrompt() {
+	public static void getUserPrompt() {
 		System.out.println("Our Services: ");
 		System.out.println("1- Mobile Recharge Services");
 		System.out.println("2- Internet Payment Services");
@@ -112,10 +112,10 @@ public abstract class Form {
 		String password = myObj.next();
 		HashMap<String, String> loginUser = user.getUserMap();
 		System.out.println("hash : " + loginUser); //
-		find(loginUser, username, password);
+		findUser(loginUser, username, password);
 	}
 
-	public static void find(HashMap<String, String> loginUser, String username, String password) {
+	public static void findUser(HashMap<String, String> loginUser, String username, String password) {
 		boolean f = false;
 		for (String i : loginUser.keySet()) {
 			if (i.equals(username) && loginUser.get(i).equals(password)) {
@@ -135,7 +135,7 @@ public abstract class Form {
 	}
 	
 	
-	public static HashMap<List<String>, Integer> adminResponse() {
+	public static HashMap<List<String>, Integer> getAdminResponse() {
 		for (List<String> i : refundSubject.requests.keySet()) {
 			if(i.size() != 2) {
 				System.out.println("1-enter 'a' for Accepted \n2-enter 'r' for  Rejecterd");
@@ -154,6 +154,64 @@ public abstract class Form {
 		}
 		return (HashMap<List<String>, Integer>) refundSubject.requests;
 	}
+	
+	
+	public static void getAdminForm() {
+		System.out.println("----Choose----");
+		System.out.println("1- Add discount");
+		System.out.println("2- View refund requests");
+		System.out.println("3- Exit");
+		int temp = myObj.nextInt();
+		switch (temp) {
+		case 1:
+			 int c;
+			System.out.println("\n1- Overall Descount \n2- Specific Discount");
+			c = myObj.nextInt();
+			if(c == 2) {
+				System.out.println("Our Services \n1- Mobile Recharge Services");
+				System.out.println("2- Internet Payment Services");
+				System.out.println("3- Landline Services ");
+				System.out.println("Enter your service: ");
+				int s = myObj.nextInt();
+				System.out.println("Enter the percentage of the discount: ");
+				int discountPercentSpecific = myObj.nextInt();
+				
+				switch (s) {
+				case 1: {
+					mobileRechaServiceFactory.specificDiscount = discountPercentSpecific;
+					break;
+				}
+				case 2:{
+					internetPaymentFactory.specificDiscount = discountPercentSpecific;
+					break;
+				}
+				case 3:{
+					landlineServiceFactory.specificDiscount = discountPercentSpecific;
+					break;
+				}
+				default:
+					throw new IllegalArgumentException("Unexpected value: " + s);
+				}
+			}else {
+				System.out.println("Enter the percentage of the discount: ");
+				int discountPercentOverall = myObj.nextInt();
+				mobileRechaServiceFactory.overallDiscount = discountPercentOverall;
+				internetPaymentFactory.overallDiscount = discountPercentOverall;
+				landlineServiceFactory.overallDiscount = discountPercentOverall;
+			}
+			break;
+		case 2:
+			System.out.println(refundSubject.requests);
+			getAdminResponse();
+			user.update();
+			break;
+		case 3:
+			return;
+		default:
+			System.out.println("sUnexpected value: " + temp);
+			break;
+		}
+		
 }
 	
-	
+}
