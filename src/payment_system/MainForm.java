@@ -24,7 +24,7 @@ public class MainForm {
 	public static ServiceFactory internetPaymentFactory = new InternetPayment();
 	public static ServiceFactory landlineServiceFactory = new Landline();
 	public static ServiceFactory donationServiceFactory = new Donations();
-	public static void getUserPrompt() {
+	public static void getUserForm() {
 		System.out.println("Our Services: ");
 		System.out.println("1- Mobile Recharge Services");
 		System.out.println("2- Internet Payment Services");
@@ -65,7 +65,7 @@ public class MainForm {
 			System.out.println("---Donation Services---");
 			Form donationForm = donationServiceFactory.createForm();
 			((Donations) donationServiceFactory).setDonationChoice();
-			((Donations) donationServiceFactory).setPaymentChoice();
+			donationServiceFactory.setPaymentChoice();
 			if( user.requestRefund(((Donations) donationServiceFactory).form.amount) ) {
 				refundSubject.subscribe(user);
 			}
@@ -97,7 +97,7 @@ public class MainForm {
 		System.out.println("Password:");
 		String password = myObj.next();
 		HashMap<String, String> loginUser = user.getUserMap();
-		System.out.println("hash : " + loginUser); //
+//		System.out.println("List of users : " + loginUser); //
 		findUser(loginUser, username, password);
 	}
 
@@ -128,7 +128,7 @@ public class MainForm {
 				if (!(i.contains("a") && i.contains("r"))) {
 					i.add(accepted);
 				}
-				System.out.println(refundSubject.requests);
+				System.out.println("List of reufund requests: " + refundSubject.requests);
 				for(int j=0;j<users.size();j++) {
 					if(users.get(j).username == i.get(0) && accepted == "a" && accepted == "r") {
 						((Wallet)users.get(j).wallet).setWalletBalance(refundSubject.requests.get(i));
@@ -149,7 +149,7 @@ public class MainForm {
 		switch (temp) {
 		case 1:
 			 int c;
-			System.out.println("\n1- Overall Descount \n2- Specific Discount");
+			System.out.println("\n1- Overall Discount \n2- Specific Discount");
 			c = myObj.nextInt();
 			if(c == 2) {
 				System.out.println("Our Services \n1- Mobile Recharge Services");
@@ -162,15 +162,15 @@ public class MainForm {
 				
 				switch (s) {
 				case 1: {
-					mobileRechaServiceFactory.specificDiscount = discountPercentSpecific;
+					((MobileRecharge)mobileRechaServiceFactory).setSpecificDiscount(discountPercentSpecific);
 					break;
 				}
 				case 2:{
-					internetPaymentFactory.specificDiscount = discountPercentSpecific;
+					((InternetPayment)internetPaymentFactory).setSpecificDiscount(discountPercentSpecific);
 					break;
 				}
 				case 3:{
-					landlineServiceFactory.specificDiscount = discountPercentSpecific;
+					((Landline)landlineServiceFactory).setSpecificDiscount(discountPercentSpecific);
 					break;
 				}
 				default:
@@ -185,7 +185,7 @@ public class MainForm {
 			}
 			break;
 		case 2:
-			System.out.println(refundSubject.requests);
+			System.out.println("List of refund requests: "+ refundSubject.requests);
 			getAdminResponse();
 			user.update();
 			break;

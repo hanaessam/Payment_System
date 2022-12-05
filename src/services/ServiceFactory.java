@@ -17,23 +17,24 @@ public abstract class ServiceFactory {
 	public static Form form ;
 	public static Payment payment;
 	public static int overallDiscount = 0;
-	public static int specificDiscount = 0;
+	private int specificDiscount = 0;
 	
 	public void setPaymentChoice() {
 		int choice = ((Form)form).paymentChoice;
 		discount = new ServicePrice(form.amount);
-		System.out.println(ServicePrice.servicePrice);
+		
+		System.out.println("Your payment: " + ServicePrice.servicePrice);
 		if(specificDiscount!=0) {
 			discount=new SpecificDiscount(discount);
 			((DiscountDecorator)discount).percent = specificDiscount;
-			form.amount = (int)discount.calculateDicount(form.amount);
-			System.out.println(form.amount);
+			form.amount = (int)discount.calculateDiscount(form.amount);
+			System.out.println("Payment after discount: "+form.amount);
 		}
 		if(overallDiscount!=0) {
 				discount = new OverallDiscount(discount);
 				((DiscountDecorator)discount).percent = overallDiscount;
-				form.amount = (int)discount.calculateDicount(form.amount);
-				System.out.println(form.amount);
+				form.amount = (int)discount.calculateDiscount(form.amount);
+				System.out.println("Payment after discount: "+ form.amount);
 		}
 		if(choice == 1) {
 			payment = new CreditCard();
@@ -53,6 +54,10 @@ public abstract class ServiceFactory {
 				setPaymentChoice();
 			}
 		}
+	}
+	
+	public void setSpecificDiscount(int specificDiscount) {
+		this.specificDiscount = specificDiscount;
 	}
 }
 	

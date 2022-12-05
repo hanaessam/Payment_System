@@ -34,12 +34,12 @@ public class Main {
 				switch (temp) {
 				case 1:
 					userForm.register();
-					userForm.getUserPrompt();
+					userForm.getUserForm();
 					userForm.users.add(userForm.user);
 					break;
 				case 2:
 					userForm.login();
-					userForm.getUserPrompt();
+					userForm.getUserForm();
 					break;
 				case 3:
 					return;
@@ -55,6 +55,6 @@ public class Main {
 				System.out.println("Unexpected value: " + choice);
 			}
 		}
-		userForm.getUserPrompt();
+		userForm.getUserForm();
 	}
 }

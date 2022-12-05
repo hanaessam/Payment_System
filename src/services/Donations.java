@@ -1,12 +1,8 @@
 package services;
-
-import discounts.Discount;
 import forms.DonationsForm;
 import forms.Form;
-import forms.MobileRechargeForm;
 import payment.Cash;
 import payment.CreditCard;
-import payment.Payment;
 import payment.Wallet;
 
 public class Donations extends ServiceFactory {
@@ -29,4 +25,29 @@ public class Donations extends ServiceFactory {
 			ngos = new NGOs(((DonationsForm)form).amount);
 		}
 	}
+	
+	@Override
+	public void setPaymentChoice() {
+		int choice = ((Form)form).paymentChoice;
+		if(choice == 1) {
+			payment = new CreditCard();
+			boolean state=payment.calculatePayment(((Form)form).amount);
+			if(!state) {
+				((Form)form).choosePayment();
+				setPaymentChoice();
+			}
+		}else if(choice == 2) {
+			payment = new Cash();
+			payment.calculatePayment(((Form)form).amount);
+		}else {
+			payment = new Wallet();
+			boolean state=payment.calculatePayment(((Form)form).amount);
+			if(!state) {
+				((Form)form).choosePayment();
+				setPaymentChoice();
+			}
+		}
+	}
+	
+	
 }

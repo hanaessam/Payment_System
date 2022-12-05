@@ -27,4 +27,5 @@ public class Landline extends ServiceFactory implements LandlineServiceProvider{
 			receiptBehavior = new MonthlyReceipt();
 		}
 	}
+
 }

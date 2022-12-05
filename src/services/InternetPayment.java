@@ -5,13 +5,11 @@ import forms.InternetPaymentForm;
 
 public class InternetPayment extends ServiceFactory implements ServiceProvider {
 	public static ServiceBehavior serviceBehavior;
-
 	public InternetPayment() {
 		super();
 	}
 	
 	public Form createForm() {
-		// TODO Auto-generated method stub
 		form = new InternetPaymentForm();
 		return (InternetPaymentForm)form;
 	}
@@ -28,4 +26,5 @@ public class InternetPayment extends ServiceFactory implements ServiceProvider {
 			serviceBehavior = new Orange();
 		}
 	}
+	
 }

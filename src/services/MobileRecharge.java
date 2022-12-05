@@ -11,7 +11,6 @@ import payment.Wallet;
 
 public class MobileRecharge extends ServiceFactory implements ServiceProvider{
 	public static ServiceBehavior serviceBehavior;
-	
 	public MobileRecharge() {
 		super();
 	}
@@ -33,4 +32,5 @@ public class MobileRecharge extends ServiceFactory implements ServiceProvider{
 			serviceBehavior = new Orange();
 		}
 	}
+
 }

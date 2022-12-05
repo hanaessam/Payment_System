@@ -6,7 +6,7 @@ public class OverallDiscount extends DiscountDecorator{
 		super(discount);
 		this.discount = discount;
 	}
-	public float calculateDicount(int price) {
+	public float calculateDiscount(int price) {
 		float result= price - (((float)(percent)/100 * price));
 		return result;
 	}

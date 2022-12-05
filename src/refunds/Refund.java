@@ -21,15 +21,13 @@ public class Refund implements Subject {
 	
 	public void subscribe(Observer userObserver) {
 		Refund.userObserver = (User) userObserver;
-		System.out.println(User.username);
 			requests.put(((User) userObserver).userRequestList,((User) userObserver).refundedAmount);
-			System.out.println(requests);
+			System.out.println("Your refund request has been sent.");
 	}
 	public void unSubscribe(Observer observer) {
 		Refund.userObserver = (User) userObserver;
-		System.out.println(User.username);
 			requests.remove(((User) userObserver).userRequestList,((User) userObserver).refundedAmount);
-			System.out.println(requests);
+			System.out.println("You've been removed from our refund list.");
 	};
 	
 	public void notifyObservers(String message) {
